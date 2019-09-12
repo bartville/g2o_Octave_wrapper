@@ -1,5 +1,5 @@
 function draw_VERTEX_SE3_QUAT(data, draw_axes = false, profile_time = false)
-  time_plot = time();
+  time_plot_init = time();
 
   num_vertex = size(data,2);
 
@@ -7,26 +7,32 @@ function draw_VERTEX_SE3_QUAT(data, draw_axes = false, profile_time = false)
   hold on;
   plot3([data(:).x], [data(:).y], [data(:).z], 'o', "markerfacecolor", "m");
 
-  data_x = zeros(num_vertex, 1)';
-  data_y = zeros(num_vertex, 1)';
-  data_z = zeros(num_vertex, 1)';
 
-  x1   = zeros(num_vertex, 3);
-  x1_x = zeros(num_vertex, 1)';
-  x1_y = zeros(num_vertex, 1)';
-  x1_z = zeros(num_vertex, 1)';
+  if profile_time
+    printf("draw_VERTEX_SE3_QUAT| plot time vertex: %f\n", time() - time_plot_init);
+  end
 
-  y1   = zeros(num_vertex, 3);
-  y1_x = zeros(num_vertex, 1)';
-  y1_y = zeros(num_vertex, 1)';
-  y1_z = zeros(num_vertex, 1)';
-
-  z1   = zeros(num_vertex, 3);
-  z1_x = zeros(num_vertex, 1)';
-  z1_y = zeros(num_vertex, 1)';
-  z1_z = zeros(num_vertex, 1)';
-
+  time_plot = time();
   if draw_axes
+    data_x = zeros(num_vertex, 1)';
+    data_y = zeros(num_vertex, 1)';
+    data_z = zeros(num_vertex, 1)';
+
+    x1   = zeros(num_vertex, 3);
+    x1_x = zeros(num_vertex, 1)';
+    x1_y = zeros(num_vertex, 1)';
+    x1_z = zeros(num_vertex, 1)';
+
+    y1   = zeros(num_vertex, 3);
+    y1_x = zeros(num_vertex, 1)';
+    y1_y = zeros(num_vertex, 1)';
+    y1_z = zeros(num_vertex, 1)';
+
+    z1   = zeros(num_vertex, 3);
+    z1_x = zeros(num_vertex, 1)';
+    z1_y = zeros(num_vertex, 1)';
+    z1_z = zeros(num_vertex, 1)';
+
     axes_length = 1.5;
     for v = 1:num_vertex
       x1(v,:) = data(v).quat * [axes_length 0 0]';
@@ -46,6 +52,7 @@ function draw_VERTEX_SE3_QUAT(data, draw_axes = false, profile_time = false)
       data_y(v) = data(v).y;
       data_z(v) = data(v).z;
     end %for
+
     hold on
     plot3([data_x; x1_x],
           [data_y; x1_y],
@@ -65,7 +72,8 @@ function draw_VERTEX_SE3_QUAT(data, draw_axes = false, profile_time = false)
   end %if
 
   if profile_time
-    printf("draw_VERTEX_SE3_QUAT| plot time: %f\n", time() - time_plot);
+    printf("draw_VERTEX_SE3_QUAT| plot time axes  : %f\n", time() - time_plot);
+    printf("draw_VERTEX_SE3_QUAT| plot time tot   : %f\n", time() - time_plot_init);
   end
 
 
