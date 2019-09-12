@@ -55,3 +55,5 @@ addpath './graphics/'
 full_visualization = true; % plots all the edges and reference frames (slow)
 plotGraph(g2o_data, full_visualization);
 ```
+
+![sphere_base](https://ibb.co/dJGZLCX)
