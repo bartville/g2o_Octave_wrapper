@@ -56,5 +56,4 @@ full_visualization = true; % plots all the edges and reference frames (slow)
 plotGraph(g2o_data, full_visualization);
 ```
 
-![sphere_base]
-(https://i.ibb.co/x8JZf9w/Screenshot-from-2019-09-12-12-55-59.png)
+![sphere_base](https://i.ibb.co/x8JZf9w/Screenshot-from-2019-09-12-12-55-59.png)
