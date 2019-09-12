@@ -1,4 +1,5 @@
 function out = draw_SE2_frame(x,y,theta)
+
   % set arrow length
   l = 0.5;
 

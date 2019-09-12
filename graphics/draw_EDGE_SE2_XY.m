@@ -1,4 +1,6 @@
-function out = draw_EDGE_SE2_XY(data_edge_se2_xy, data_vertex_se2, data_vertex_xy)
+function out = draw_EDGE_SE2_XY(data_edge_se2_xy, data_vertex_se2, data_vertex_xy, profile_time = false)
+  time_plot = time();
+
   num_edges = size(data_edge_se2_xy, 2);
 
   for e = 1:num_edges
@@ -12,6 +14,11 @@ function out = draw_EDGE_SE2_XY(data_edge_se2_xy, data_vertex_se2, data_vertex_x
     else
       error('draw_EDGE_SE2_XY| Edge_SE2 pointing to non-existing Vertex');
     end
+  end % for
+
+
+  if profile_time
+    printf("draw_EDGE_SE2_XY| plot time: %f\n", time() - time_plot);
   end
 
 end
